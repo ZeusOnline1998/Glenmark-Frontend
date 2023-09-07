@@ -21,7 +21,7 @@ const Dashboard = () => {
       <div className='lg:w-96 sticky top-0 md:h-screen'>
         <NavBar />
       </div>
-      <div className='md:w-full'>
+      <div className='md:w-full bg-mystic-100'>
         <Outlet/>
      </div>
     </div>

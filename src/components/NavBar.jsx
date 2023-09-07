@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import $ from 'jquery';
 import axios from 'axios';
+import {SlLogout} from 'react-icons/sl'
+import { FiHome } from 'react-icons/fi'
+import { TbBrandProducthunt } from 'react-icons/tb'
+import { VscSymbolKeyword } from 'react-icons/vsc'
 
 const NavBar = () => {
 
@@ -56,7 +60,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div className='bg-sidebar bg-center hidden md:flex text-white h-screen md:w-80 lg:w-[22rem] relative flex-col items-center pt-16 space-y-10 shadow-navbar'>
+            <div className='bg-blue-zodiac-950 bg-center hidden md:flex text-white h-screen md:w-80 lg:w-[22rem] relative flex-col items-center pt-16 space-y-10 shadow-navbar'>
                 <button className="absolute top-0 right-0 p-4 hamburger-side inline-block cursor-pointer h-10" onClick={toggleSideMenu}>
                     <div className="line h-0.5 w-5 my-1 bg-white"></div>
                     <div className="line h-0.5 w-5 my-1 bg-white"></div>
@@ -72,20 +76,22 @@ const NavBar = () => {
                 </div>
                 <ul className='menu flex flex-col items-center space-y-14 w-full px-8'>
                     <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
-                        <Link to='/' className='flex px-2 py-2 space-x-3'>
-                            <img src="/home.svg" alt="" className='w-6' />
+                        <Link to='/' className='flex px-2 py-2 space-x-3 items-center'>
+                            <FiHome className='text-2xl' />
                             <span className='text-xl'>Home</span>
                         </Link>
                     </li>
                     <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
-                        <Link to='/' className='flex px-2 py-2 space-x-3'>
-                            <img src="/keyword_suggestion.svg" alt="" className='w-6' />
+                        <Link to='/' className='flex px-2 py-2 space-x-3 items-center'>
+                            {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
+                            <VscSymbolKeyword className='text-2xl' />
                             <span className='text-xl'>Keyword Suggestions</span>
                         </Link>
                     </li>
                     <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
-                        <Link to='/' className='flex px-2 py-2 space-x-3'>
-                            <img src="/product_performance.svg" alt="" className='w-6' />
+                        <Link to='/product_performance' className='flex px-2 py-2 space-x-3 items-center'>
+                            {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
+                            <TbBrandProducthunt className='text-3xl' />
                             <span className='text-xl'>Product Performance</span>
                         </Link>
                     </li>
@@ -101,9 +107,11 @@ const NavBar = () => {
                 <li className='bg-blue-500 font-bold text-lg px-4 py-2 w-full text-center rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>Product Performance</li> */}
                 </ul>
 
-                <div className='absolute left-0 bottom-0 p-4'>
-                    <button onClick={handleLogout} className='font-bold text-xl text-gray-100 px-4 py-1 rounded-lg hover:bg-white hover:text-black transition-all duration-500'>
-                        Logout
+                <div className='fixed left-0 bottom-0 p-4'>
+                    <button onClick={handleLogout} className='flex items-center space-x-2 font-bold text-xl text-gray-100 px-4 py-1 rounded-lg hover:bg-white hover:text-black transition-all duration-500'>
+                        <SlLogout/> <span>
+                            Logout
+                        </span>
                     </button>
                 </div>
             </div>

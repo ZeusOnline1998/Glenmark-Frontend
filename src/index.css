@@ -5,3 +5,12 @@
 .w-0 {
     width: 0px;
 }
+
+/* .sidebar {
+    background: rgb(9, 14, 33);
+    background: linear-gradient(15deg, rgba(9, 14, 33, 1) 0%, rgba(56, 6, 99, 1) 72%);
+} */
+
+.table-shadow {
+    box-shadow: 0 0 0 -5px #12395b;
+}

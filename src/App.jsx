@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
-import Platform from './components/Platform';
+import ProductList from './components/ProductList';
 import Home from './components/Home';
+import ProductPerformance from './components/ProductPerformance';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Home /> */}
           <Route path='/' element={<Dashboard />}>
             <Route path='/' element={<Home/>}></Route>
-            <Route path='/platform' element={<Platform />}></Route>
+            <Route path='/product_list' element={<ProductList />}></Route>
+            <Route path='/product_performance' element={<ProductPerformance />}></Route>
           </Route>
           {/* </div> */}
           {/* </div> */}
