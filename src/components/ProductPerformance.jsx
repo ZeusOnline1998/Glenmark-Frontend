@@ -7,19 +7,21 @@ import { FaStar } from 'react-icons/fa';
 const ProductPerformance = () => {
 
   const [product, setProduct] = useState(null);
+  const [product_seller, setProduct_seller] = useState(null);
   const location = useLocation();
   const host = process.env.REACT_APP_SERVER_URL
 
-  const { product_id } = location.state
+  const { product_id, platform_id } = location.state
 
   const getProduct = async () => {
     console.log(product_id)
-    axios.get(`${host}/api/get_product_details/`, {
+    axios.get(`${host}/api/get_product_details_2/`, {
       headers: {
         'Authorization': `JWT ${localStorage.getItem('token')}`
       },
       params: {
-        'product_id': product_id
+        'product_id': product_id,
+        'platform_id': platform_id,
       }
     })
       .then((response) => {
@@ -27,6 +29,7 @@ const ProductPerformance = () => {
       }).then(data => {
         console.log(data)
         setProduct(data)
+        setProduct_seller(data.seller)
       }
       )
   }
@@ -74,7 +77,7 @@ const ProductPerformance = () => {
                   <td>{product.brand}</td>
                   <td className=''>
                     <span>Total Rating: {product.total_ratings}</span>
-                      <div className='mt-5 flex flex-col items-center mr-2'>
+                    <div className='mt-5 flex flex-col items-center mr-2'>
                       {/* <span className='flex items-center space-x-1 w-full'>
                         <span>5.0</span> <FaStar className='text-green-500' />
                         <FaStar className='text-green-500' /> <FaStar className='text-green-500' /> <FaStar className='text-green-500' /> <FaStar className='text-green-500' />
@@ -148,33 +151,39 @@ const ProductPerformance = () => {
                         </tr>
                       </table>
                     </div>
-                    
+
                   </td>
                 </tr>
               </table>
             </div>
-              
+
           </div>
-            <div className='px-2 md:px-14 py-8 grid lg:grid-cols-2 grid-cols-1 w-full lg:space-x-10 space-y-10 lg:space-y-0 lg:pb-28 pb-56'>
-              <table className='w-full bg-white rounded-2xl shadow-xl'>
-                <tr>
-                  <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Seller</th>
-                  <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Price</th>
-                  <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Availability</th>
-                  <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Main Seller</th>
-                </tr>
-                <tr className=''>
-                  <td className='py-4 px-2 md:px-4 text-center'><span>{capitalFirstLetter(product.seller)}</span></td>
-                  <td className='py-4 px-2 md:px-4 text-center'><span>{product.price}</span></td>
-                  <td className='py-4 px-2 md:px-4 text-center'><span>{product.availability === 1 ? "Instock" : "Out of Stock"}</span></td>
-                  <td className='py-4 px-2 md:px-4 text-center'><span>{product.main_seller}</span></td>
-                </tr>
-              </table>
-              <div className='relative flex justify-center bg-white shadow-lg rounded-lg'>
-                <span className='absolute left-0 px-5 w-fit text-center py-4 font-semibold text-xl'>Rating</span>
-                <img src="/logo192.png" alt="" />
-              </div>
+          <div className='px-2 md:px-14 py-8 grid lg:grid-cols-2 grid-cols-1 w-full lg:space-x-10 space-y-10 lg:space-y-0 lg:pb-28 pb-56'>
+            <table className='w-full bg-white rounded-2xl shadow-xl'>
+              <tr>
+                <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Seller</th>
+                <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Price</th>
+                <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Availability</th>
+                <th className='px-4 py-2 md:py-4 bg-blue-zodiac-900 text-white font-medium'>Main Seller</th>
+              </tr>
+              {
+                product_seller.map(data => {
+                  return (
+                    <tr className=''>
+                      <td className='py-4 px-2 md:px-4 text-center'><span>{capitalFirstLetter(data.seller)}</span></td>
+                      <td className='py-4 px-2 md:px-4 text-center'><span>{data.price}</span></td>
+                      <td className='py-4 px-2 md:px-4 text-center'><span>{data.availability === 1 ? "Instock" : "Out of Stock"}</span></td>
+                      <td className='py-4 px-2 md:px-4 text-center'><span>{data.main_seller}</span></td>
+                    </tr>
+                  )
+                })
+              }
+            </table>
+            <div className='relative flex justify-center bg-white shadow-lg rounded-lg'>
+              <span className='absolute left-0 px-5 w-fit text-center py-4 font-semibold text-xl'>Rating</span>
+              <img src="/logo192.png" alt="" />
             </div>
+          </div>
         </div>
       }
     </>

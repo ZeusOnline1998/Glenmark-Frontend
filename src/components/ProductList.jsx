@@ -46,14 +46,17 @@ const ProductList = () => {
         if (location.state === null) {
         }
         else {
-            getProductDetails();
-
+            if(localStorage.getItem('token')){
+                getProductDetails();
+            }
         }
         // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        getRatings();
+        if(localStorage.getItem('token')){
+            getRatings();
+        }
     }, [products])
 
     const capitalFirstLetter = (word) => {
@@ -103,7 +106,7 @@ const ProductList = () => {
                                                             <td className='text-red-500'>No Previous Data</td>
                                                 }
                                                 <td className='py-4'>
-                                                    <Link to='/product_performance' state={{ product_id: product.product_details_id }}>
+                                                    <Link to='/product_performance' state={{ product_id: product.product_id, platform_id: product.platform_id }}>
                                                         <span className='bg-gradient-to-r w-auto h-auto from-blue-zodiac-900 to-blue-zodiac-950 text-white px-2 md:px-4 py-1 md:py-2 rounded-lg mx-4'>Report</span>
                                                     </Link>
                                                 </td>

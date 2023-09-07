@@ -53,7 +53,9 @@ const NavBar = () => {
     }
 
     useEffect(() => {
-        getUser();
+        if(localStorage.getItem('token')){
+            getUser();
+        }
         // eslint-disable-next-line
     }, [])
 

@@ -34,7 +34,9 @@ const Platform = () => {
     }
 
     useEffect(() => {
-        getPlatforms();
+        if(localStorage.getItem('token')){
+            getPlatforms();
+        }
         // eslint-disable-next-line
     }, [])
 

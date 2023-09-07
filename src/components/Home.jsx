@@ -31,7 +31,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getPlatform();
+    if(localStorage.getItem('token')){
+      getPlatform();
+    }
     // eslint-disable-next-line
   }, [])
 

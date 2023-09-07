@@ -25,7 +25,7 @@ const Dashboard = () => {
             localStorage.setItem('refresh', data.refresh)
           }
           else{
-            navigate('/login');
+            // navigate('/login');
           }
         }
         )
