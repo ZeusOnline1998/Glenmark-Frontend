@@ -57,6 +57,10 @@ const NavBar = () => {
         // eslint-disable-next-line
     }, [])
 
+    // const toggleMenuHide = () => {
+    //     $(".menu").toggleClass("-translate-x-full");
+    // }
+
 
     return (
         <>
@@ -122,27 +126,27 @@ const NavBar = () => {
                         <div className="line h-0.5 w-5 my-1 bg-black"></div>
                         <div className="line h-0.5 w-5 my-1 bg-black"></div>
                     </button>
-                    <ul className='menu -translate-x-full flex absolute left-0 w-screen flex-col items-center mt-3 bg-white border border-b-gray-500 transition-all'>
+                    <ul className='menu -translate-x-full z-10 flex absolute left-0 w-screen flex-col items-center mt-3 bg-white border border-b-gray-500 transition-all'>
                         <Link className='w-full' to='/'>
-                            <li className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
+                            <li onClick={toggleMenu} className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                                 {/* <img src="/home.svg" alt="" className='w-6' /> */}
                                 <span className='text-2xl px-2 py-5 w-full'>Home</span>
                             </li>
                         </Link>
                         <Link className='w-full' to='/'>
-                            <li className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
+                            <li onClick={toggleMenu} className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                                 {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
                                 <span className='text-2xl px-2 py-5 w-full'>Keyword Suggestions</span>
                             </li>
                         </Link>
                         <Link className='w-full' to='/'>
-                            <li className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
+                            <li onClick={toggleMenu} className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                                 {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
                                 <span className='text-2xl px-2 py-5 w-full'>Product Performance</span>
                             </li>
                         </Link>
                         <Link className='w-full' to='/'>
-                            <li className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
+                            <li onClick={toggleMenu} className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                                 {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
                                 <span className='text-2xl px-2 py-5 w-full' onClick={handleLogout}>Logout</span>
                             </li>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 import $ from 'jquery';
 
@@ -9,17 +9,17 @@ const Platform = () => {
     const navigate = useNavigate();
     const [platforms, setPlatforms] = useState([]);
     const host = process.env.REACT_APP_SERVER_URL
+    const location = useLocation();
 
     const handlePlatform = (e) => {
         $('.platform-menu').toggleClass('hidden')
         console.log("Do something")
-        navigate('/product_list', { state: { value: e.target.value } })
+        navigate('../product_list', { state: { value: e.target.value }, replace: true, from: location })
         // console.log(e.target.value);
     }
 
     const getPlatforms = async () => {
-        console.log("Do Something")
-        
+        // console.log("Do Something")
         axios.get(`${host}/api/get_platform_list/`, {
             headers: {
                 'Authorization': `JWT ${localStorage.getItem('token')}`
@@ -53,7 +53,7 @@ const Platform = () => {
 
     return (
         <>
-            <div className='group w-fit relative'>
+            <div className='group w-fit md:relative'>
                 {/* {platform && <>
             <span className='bg-blue-500 pl-6 pr-14 py-2 text-xl font-semibold text-left text-white rounded-full'>
               Platform

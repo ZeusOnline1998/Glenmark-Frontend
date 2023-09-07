@@ -41,14 +41,17 @@ const Home = () => {
 
 
   return (
-    <div>
-      <div className='px-4 py-4 text-2xl font-semibold border border-b-gray-400 rounded-b shadow-lg'>
+    <>
+      <div className='px-4 py-4 text-2xl bg-white font-semibold border border-b-gray-400 rounded-b shadow-lg'>
         <span>E Com Pulse</span>
       </div>
       <div className='m-5'>
         <Platform/>
       </div>
-    </div>
+      <div className='flex justify-center items-center'>
+        <img src="/home_image.png" alt="" />
+      </div>
+    </>
   )
 }
 
