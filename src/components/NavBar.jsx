@@ -81,7 +81,27 @@ const NavBar = () => {
                     <span className='font-bold text-xl text-gray-200 cursor-default'>{name}</span>
                 </div>
                 <ul className='menu flex flex-col items-center space-y-14 w-full px-8'>
-                    <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
+                    <li className='font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-zodiac-900 hover:underline hover:underline-offset-8 transition-all'>
+                        <Link to='/' className='flex px-2 py-2 space-x-3 items-center'>
+                            <FiHome className='text-2xl' />
+                            <span className='text-xl'>Home</span>
+                        </Link>
+                    </li>
+                    <li className='font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-zodiac-900 hover:underline hover:underline-offset-8 transition-all'>
+                        <Link to='/keyword_suggestion' className='flex px-2 py-2 space-x-3 items-center' state={{changed: false}}>
+                            {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
+                            <VscSymbolKeyword className='text-2xl' />
+                            <span className='text-xl'>Keyword Suggestions</span>
+                        </Link>
+                    </li>
+                    <li className='font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-zodiac-900 hover:underline hover:underline-offset-8 transition-all'>
+                        <Link to='/product_performance' className='flex px-2 py-2 space-x-3 items-center' state={{ product_id: null, platform_id: null, changed: true }}>
+                            {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
+                            <TbBrandProducthunt className='text-3xl' />
+                            <span className='text-xl'>Product Performance</span>
+                        </Link>
+                    </li>
+                    {/* <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                         <Link to='/' className='flex px-2 py-2 space-x-3 items-center'>
                             <FiHome className='text-2xl' />
                             <span className='text-xl'>Home</span>
@@ -89,18 +109,18 @@ const NavBar = () => {
                     </li>
                     <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                         <Link to='/' className='flex px-2 py-2 space-x-3 items-center'>
-                            {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
                             <VscSymbolKeyword className='text-2xl' />
                             <span className='text-xl'>Keyword Suggestions</span>
                         </Link>
                     </li>
                     <li className='bg-blue-500 font-bold w-full rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                         <Link to='/product_performance' className='flex px-2 py-2 space-x-3 items-center'>
-                            {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
                             <TbBrandProducthunt className='text-3xl' />
                             <span className='text-xl'>Product Performance</span>
                         </Link>
-                    </li>
+                    </li> */}
+                            {/* <img src="/product_performance.svg" alt="" className='w-6' /> */}
+                            {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
                     {/* <li className='bg-blue-500 font-bold px-2 py-2 space-x-3 w-full flex rounded-lg hover:cursor-pointer hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                         <img src="/keyword_suggestion.svg" alt="" className='w-6' />
                         <span className='text-xl'>Keyword Suggestions</span>
@@ -114,7 +134,7 @@ const NavBar = () => {
                 </ul>
 
                 <div className='fixed left-0 bottom-0 p-4'>
-                    <button onClick={handleLogout} className='flex items-center space-x-2 font-bold text-xl text-gray-100 px-4 py-1 rounded-lg hover:bg-white hover:text-black transition-all duration-500'>
+                    <button onClick={handleLogout} className='flex items-center space-x-2 font-bold text-xl text-gray-100 px-4 py-1 rounded-lg hover:bg-blue-zodiac-900 hover:text-white transition-all duration-500'>
                         <SlLogout/> <span>
                             Logout
                         </span>
@@ -135,7 +155,7 @@ const NavBar = () => {
                                 <span className='text-2xl px-2 py-5 w-full'>Home</span>
                             </li>
                         </Link>
-                        <Link className='w-full' to='/'>
+                        <Link className='w-full' to='/keyword_suggestion'>
                             <li onClick={toggleMenu} className='bg-white font-bold w-full flex border border-b-gray-300 hover:cursor-pointer hover:text-white hover:bg-blue-700 hover:underline hover:underline-offset-8 transition-all'>
                                 {/* <img src="/keyword_suggestion.svg" alt="" className='w-6' /> */}
                                 <span className='text-2xl px-2 py-5 w-full'>Keyword Suggestions</span>

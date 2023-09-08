@@ -8,13 +8,18 @@ const Platform = () => {
 
     const navigate = useNavigate();
     const [platforms, setPlatforms] = useState([]);
+    // const [platform, setplatform] = useState(null);
     const host = process.env.REACT_APP_SERVER_URL
-    const location = useLocation();
+    // const location = useLocation();
 
-    const handlePlatform = (e) => {
+    const handlePlatform = async (e) => {
         $('.platform-menu').toggleClass('hidden')
         console.log("Do something")
-        navigate('../product_list', { state: { value: e.target.value }, replace: true, from: location })
+        // await setplatform(e.target.value);
+        // console.log(platform)
+        console.log(e.target.value);
+        navigate('/product_list', { state: { value: e.target.value,  }, replace: true})
+        console.log("Do something")
         // console.log(e.target.value);
     }
 

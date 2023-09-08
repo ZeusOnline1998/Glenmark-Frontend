@@ -4,6 +4,7 @@ import Login from './components/Login';
 import ProductList from './components/ProductList';
 import Home from './components/Home';
 import ProductPerformance from './components/ProductPerformance';
+import KeywordSuggestions from './components/KeywordSuggestions';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={<Dashboard />}>
             <Route path='/' element={<Home/>}></Route>
             <Route path='/product_list' element={<ProductList />}></Route>
+            <Route path='/keyword_suggestion' element={<KeywordSuggestions />}></Route>
             <Route path='/product_performance' element={<ProductPerformance />}></Route>
           </Route>
           {/* </div> */}

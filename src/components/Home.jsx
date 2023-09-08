@@ -50,7 +50,7 @@ const Home = () => {
       <div className='m-5'>
         <Platform/>
       </div>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center pb-96 pb-0'>
         <img src="/home_image.png" alt="" />
       </div>
     </>
