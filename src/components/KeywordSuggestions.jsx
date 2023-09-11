@@ -10,6 +10,7 @@ const KeywordSuggestions = () => {
     const [durationList, setDurationList] = useState(null);
     const [keywordsList, setKeywordsList] = useState(null);
     const [change, setChange] = useState(null);
+    const [selectedValues, setSelectedValues] = useState([]);
     const location = useLocation();
     const [filterData, setFilterData] = useState({
         platform: "",
@@ -18,7 +19,7 @@ const KeywordSuggestions = () => {
     });
     const [filterResult, setFilterResult] = useState(null);
 
-    const { changed } = location.state;
+    // const { changed } = location.state;
 
     const getPlatform = async () => {
         axios.get(`${host}/api/get_platform_list`, {
@@ -64,8 +65,8 @@ const KeywordSuggestions = () => {
         getPlatform();
         getDuration();
         getKeywords();
-        setChange(changed)
-    }, [change])
+        // setChange(changed)
+    }, [])
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -97,10 +98,43 @@ const KeywordSuggestions = () => {
         setFilterData({ ...filterData, [e.target.name]: e.target.value })
     }
 
+    const handleCheckboxChange = (e) => {
+        const value = e.target.value;
+        if (e.target.checked) {
+            setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
+        } else {
+            setSelectedValues((prevSelectedValues) =>
+                prevSelectedValues.filter((val) => val !== value)
+            );
+        }
+    };
+
     const handleGenerateReport = (e) => {
         e.preventDefault();
-        console.log(e.data)
+        axios.post(`${host}/api/get_keyword_filtered_data/`, {
+            arr: selectedValues
+        }, {
+            headers: {
+                'Authorization': `JWT ${localStorage.getItem('token')}`
+            },
+        }).then((response) => {
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Create a temporary URL for the Blob
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+
+            link.href = url;
+            link.download = 'data.xlsx';
+
+            // Trigger the download
+            link.click();
+
+            window.URL.revokeObjectURL(url);
+        })
     }
+
 
     return (
         <>
@@ -142,7 +176,7 @@ const KeywordSuggestions = () => {
                 </div>
                 <div className='flex w-full items-center justify-center text-center px-6 py-10'>
                     {
-                        filterResult !== null && change !== null &&
+                        filterResult !== null && 
                         <form method="get" onSubmit={handleGenerateReport} className='w-full'>
                             <table className='w-full bg-white rounded-3xl shadow-xl'>
                                 <thead className=''>
@@ -157,7 +191,7 @@ const KeywordSuggestions = () => {
                                         filterResult.map((data) => {
                                             return (
                                                 <tr>
-                                                    <td className='px-5 text-center border-gray-100 border-b'><input type='checkbox' value={data.id}></input></td>
+                                                    <td className='px-5 text-center border-gray-100 border-b'><input type='checkbox' value={data.id} onChange={handleCheckboxChange}></input></td>
                                                     <td className='px-5 text-center border-gray-100 border-b border-l'>{data.platform}</td>
                                                     <td className='px-5 text-center border-gray-100 border-b border-l'>{data.keyword}</td>
                                                     <td className='px-5 text-justify border-gray-100 border-b border-l'>{data.product_name}</td>
